@@ -1,4 +1,8 @@
 import { Animation, AnimationBuilder } from './animations/interfaces';
+
+import { ActionSheet, ActionSheetButtons, ActionSheetEvent, ActionSheetOptions } from './components/action-sheet/action-sheet';
+import { ActionSheetController } from './components/action-sheet-controller/action-sheet-controller';
+
 import { Loading, LoadingEvent, LoadingOptions } from './components/loading/loading';
 import { LoadingController } from './components/loading-controller/loading-controller';
 import { GestureDetail, GestureCallback } from './components/gesture/gesture';
@@ -7,6 +11,10 @@ import { MenuType } from './components/menu/menu-types';
 import { MenuController } from './components/menu/menu-controller';
 import { Modal, ModalOptions, ModalEvent } from './components/modal/modal';
 import { ModalController } from './components/modal-controller/modal-controller';
+
+import { Popover, PopoverEvent, PopoverOptions } from './components/popover/popover'
+import { PopoverController } from './components/popover-controller/popover-controller'
+
 import { Scroll, ScrollCallback, ScrollDetail } from './components/scroll/scroll';
 import { Segment } from './components/segment/segment';
 import { SegmentButton, SegmentButtonEvent } from './components/segment-button/segment-button';
@@ -29,9 +37,11 @@ export interface IonicGlobal extends Stencil.AppGlobal {
 
 
 export interface IonicController {
+  <ActionSheetController>(ctrlName: 'action-sheet', opts: ActionSheetOptions): Promise<ActionSheet>;
   <LoadingController>(ctrlName: 'loading', opts: LoadingOptions): Promise<Loading>;
   <MenuController>(ctrlName: 'menu'): Promise<MenuController>;
   <ModalController>(ctrlName: 'modal', opts: ModalOptions): Promise<Modal>;
+  <PopoverController>(ctrlName: 'popover', opts: PopoverOptions): Promise<Popover>;
   (ctrlName: string, opts?: any): Promise<IonicControllerApi>;
 }
 
@@ -68,6 +78,11 @@ export interface BooleanInputComponent extends BaseInputComponent {
 
 
 export {
+  ActionSheet,
+  ActionSheetButtons,
+  ActionSheetEvent,
+  ActionSheetOptions,
+  ActionSheetController,
   Animation,
   AnimationBuilder,
   GestureDetail,
@@ -81,6 +96,10 @@ export {
   Modal,
   ModalOptions,
   ModalEvent,
+  Popover,
+  PopoverController,
+  PopoverEvent,
+  PopoverOptions,
   Scroll,
   ScrollCallback,
   ScrollDetail,
